@@ -10,9 +10,9 @@
   "author": {
     "name": "Khaled Alshamrani",
     "email": "fooz1980k@gmail.com",
-    "url": "https://github.com/fooz1980k-sudo/yaqeen-bundle"
+    "url": "https://github.com/fooz1980k-sudo/tw-yaqeen"
   },
-  "repository": "https://github.com/fooz1980k-sudo/yaqeen-bundle",
+  "repository": "https://github.com/fooz1980k-sudo/tw-yaqeen",
   "components": [
     {
       "title": "يقين · شريط الضمانات",
@@ -109,7 +109,7 @@
         }
       ],
       "key": "0eba3ec1-af34-59e2-acd9-4153ca5c77d5",
-      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/yaqeen-bundle/main/previews/yaqeen-trust-bar.jpg"
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/tw-yaqeen/main/previews/yaqeen-trust-bar.jpg"
     },
     {
       "title": "يقين · ختم الضمان",
@@ -232,7 +232,7 @@
         }
       ],
       "key": "a3cf75ce-cfad-5d65-aee3-8187b373fec7",
-      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/yaqeen-bundle/main/previews/yaqeen-guarantee.jpg"
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/tw-yaqeen/main/previews/yaqeen-guarantee.jpg"
     },
     {
       "title": "يقين · أسئلة شائعة ذكية",
@@ -340,7 +340,7 @@
         }
       ],
       "key": "9e9a791a-f621-5831-a261-ea54d444ed65",
-      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/yaqeen-bundle/main/previews/yaqeen-faq.jpg"
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/tw-yaqeen/main/previews/yaqeen-faq.jpg"
     },
     {
       "title": "يقين · شعارات الشركاء",
@@ -431,7 +431,7 @@
         }
       ],
       "key": "e1bbeaa1-0dcf-5167-b978-480cf2eae2d0",
-      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/yaqeen-bundle/main/previews/yaqeen-logos.jpg"
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/tw-yaqeen/main/previews/yaqeen-logos.jpg"
     },
     {
       "title": "يقين · ملخص التقييمات",
@@ -529,7 +529,7 @@
         }
       ],
       "key": "b34562d9-6a7e-5884-b995-b6e4ec1434f7",
-      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/yaqeen-bundle/main/previews/yaqeen-rating.jpg"
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/tw-yaqeen/main/previews/yaqeen-rating.jpg"
     }
   ]
 }
