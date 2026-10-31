@@ -1,0 +1,535 @@
+{
+  "name": {
+    "ar": "يقين — عناصر الثقة والطمأنينة",
+    "en": "Yaqeen — Trust & Reassurance Components"
+  },
+  "description": {
+    "ar": "5 عناصر فاخرة تبني ثقة العميل قبل ما يدفع: شريط الضمانات، ختم الضمان الذهبي، أسئلة شائعة بالبحث تظهر في قوقل، شعارات الشركاء، وملخص تقييمات محسوب من أرقامك الحقيقية.",
+    "en": "5 premium components that build buyer confidence: assurance strip, gold guarantee seal, searchable FAQ with Google rich results, partner logos marquee, and a computed rating summary."
+  },
+  "author": {
+    "name": "Khaled Alshamrani",
+    "email": "fooz1980k@gmail.com",
+    "url": "https://github.com/fooz1980k-sudo/yaqeen-bundle"
+  },
+  "repository": "https://github.com/fooz1980k-sudo/yaqeen-bundle",
+  "components": [
+    {
+      "title": "يقين · شريط الضمانات",
+      "icon": "sicon-shield-check",
+      "name": "yaqeen-trust-bar",
+      "fields": [
+        {
+          "id": "items",
+          "icon": "sicon-list",
+          "type": "collection",
+          "format": "collection",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 6,
+          "item_label": "ضمان",
+          "fields": [
+            {
+              "id": "emoji",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "رمز تعبيري",
+              "format": "text",
+              "required": false,
+              "maxLength": 4,
+              "value": "✓",
+              "placeholder": ""
+            },
+            {
+              "id": "title",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "العنوان",
+              "format": "text",
+              "required": false,
+              "maxLength": 40,
+              "value": "",
+              "placeholder": "",
+              "multilanguage": true
+            },
+            {
+              "id": "text",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "سطر توضيحي",
+              "format": "text",
+              "required": false,
+              "maxLength": 80,
+              "value": "",
+              "placeholder": "",
+              "multilanguage": true
+            }
+          ],
+          "value": [
+            {
+              "emoji": "🚚",
+              "title": "شحن سريع",
+              "text": "يوصلك خلال 1–3 أيام"
+            },
+            {
+              "emoji": "↩️",
+              "title": "استرجاع سهل",
+              "text": "خلال 14 يوم"
+            },
+            {
+              "emoji": "🔒",
+              "title": "دفع آمن",
+              "text": "مدى، Apple Pay، تقسيط"
+            },
+            {
+              "emoji": "💬",
+              "title": "دعم سريع",
+              "text": "نرد عليك في دقائق"
+            }
+          ]
+        },
+        {
+          "id": "dark",
+          "icon": "sicon-toggle-off",
+          "type": "boolean",
+          "format": "switch",
+          "label": "خلفية داكنة",
+          "required": false,
+          "value": false
+        },
+        {
+          "id": "color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون مميز (اختياري — الافتراضي لون متجرك)",
+          "required": false,
+          "value": ""
+        }
+      ],
+      "key": "0eba3ec1-af34-59e2-acd9-4153ca5c77d5",
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/yaqeen-bundle/main/previews/yaqeen-trust-bar.jpg"
+    },
+    {
+      "title": "يقين · ختم الضمان",
+      "icon": "sicon-award",
+      "name": "yaqeen-guarantee",
+      "fields": [
+        {
+          "id": "title",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "العنوان",
+          "format": "text",
+          "required": false,
+          "maxLength": 120,
+          "value": "اشترِ وأنت مطمئن",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "subtitle",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "الوصف",
+          "format": "textarea",
+          "required": false,
+          "maxLength": 200,
+          "value": "إذا ما عجبك المنتج نرجّع لك فلوسك كاملة",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "days",
+          "icon": "sicon-hashtag",
+          "type": "number",
+          "format": "number",
+          "label": "أيام الضمان",
+          "required": false,
+          "value": 30,
+          "minimum": 1,
+          "maximum": 365
+        },
+        {
+          "id": "seal",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "النص الدائري حول الختم",
+          "format": "text",
+          "required": false,
+          "maxLength": 40,
+          "value": "ضمان ذهبي · رضاك أولاً · ",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "promises",
+          "icon": "sicon-list",
+          "type": "collection",
+          "format": "collection",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 6,
+          "item_label": "وعد",
+          "fields": [
+            {
+              "id": "text",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "الوعد",
+              "format": "text",
+              "required": false,
+              "maxLength": 80,
+              "value": "",
+              "placeholder": "",
+              "multilanguage": true
+            }
+          ],
+          "value": [
+            {
+              "text": "استرجاع كامل المبلغ"
+            },
+            {
+              "text": "منتجات أصلية 100٪"
+            },
+            {
+              "text": "تغليف يحمي طلبك"
+            }
+          ]
+        },
+        {
+          "id": "button",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "نص الزر",
+          "format": "text",
+          "required": false,
+          "maxLength": 30,
+          "value": "اقرأ سياسة الاسترجاع",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "link",
+          "icon": "sicon-link",
+          "type": "string",
+          "format": "url",
+          "label": "رابط الزر",
+          "required": false,
+          "value": "",
+          "placeholder": "https://"
+        },
+        {
+          "id": "color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون مميز (اختياري — الافتراضي لون متجرك)",
+          "required": false,
+          "value": ""
+        }
+      ],
+      "key": "a3cf75ce-cfad-5d65-aee3-8187b373fec7",
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/yaqeen-bundle/main/previews/yaqeen-guarantee.jpg"
+    },
+    {
+      "title": "يقين · أسئلة شائعة ذكية",
+      "icon": "sicon-help-circle",
+      "name": "yaqeen-faq",
+      "fields": [
+        {
+          "id": "title",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "العنوان",
+          "format": "text",
+          "required": false,
+          "maxLength": 120,
+          "value": "عندك سؤال؟",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "subtitle",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "الوصف",
+          "format": "textarea",
+          "required": false,
+          "maxLength": 200,
+          "value": "جمعنا لك أكثر الأسئلة اللي توصلنا",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "items",
+          "icon": "sicon-list",
+          "type": "collection",
+          "format": "collection",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 20,
+          "item_label": "سؤال",
+          "fields": [
+            {
+              "id": "q",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "السؤال",
+              "format": "text",
+              "required": false,
+              "maxLength": 160,
+              "value": "",
+              "placeholder": "",
+              "multilanguage": true
+            },
+            {
+              "id": "a",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "الجواب",
+              "format": "textarea",
+              "required": false,
+              "maxLength": 800,
+              "value": "",
+              "placeholder": "",
+              "multilanguage": true
+            }
+          ],
+          "value": [
+            {
+              "q": "كم يأخذ التوصيل؟",
+              "a": "من 1 إلى 3 أيام عمل داخل المملكة."
+            },
+            {
+              "q": "هل أقدر أرجّع المنتج؟",
+              "a": "أكيد، خلال 14 يوم من الاستلام."
+            }
+          ]
+        },
+        {
+          "id": "search",
+          "icon": "sicon-toggle-off",
+          "type": "boolean",
+          "format": "switch",
+          "label": "إظهار مربع البحث",
+          "required": false,
+          "value": true
+        },
+        {
+          "id": "contact",
+          "icon": "sicon-link",
+          "type": "string",
+          "format": "url",
+          "label": "رابط التواصل (اختياري)",
+          "required": false,
+          "value": "",
+          "placeholder": "https://"
+        },
+        {
+          "id": "color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون مميز (اختياري — الافتراضي لون متجرك)",
+          "required": false,
+          "value": ""
+        }
+      ],
+      "key": "9e9a791a-f621-5831-a261-ea54d444ed65",
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/yaqeen-bundle/main/previews/yaqeen-faq.jpg"
+    },
+    {
+      "title": "يقين · شعارات الشركاء",
+      "icon": "sicon-image-carousel",
+      "name": "yaqeen-logos",
+      "fields": [
+        {
+          "id": "title",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "العنوان",
+          "format": "text",
+          "required": false,
+          "maxLength": 120,
+          "value": "شركاء النجاح",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "logos",
+          "icon": "sicon-list",
+          "type": "collection",
+          "format": "collection",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 20,
+          "item_label": "شعار",
+          "fields": [
+            {
+              "id": "image",
+              "icon": "sicon-image-landscape",
+              "type": "string",
+              "format": "image",
+              "label": "الشعار (PNG شفاف)",
+              "required": false,
+              "value": ""
+            },
+            {
+              "id": "name",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "الاسم (يظهر إذا ما فيه صورة)",
+              "format": "text",
+              "required": false,
+              "maxLength": 40,
+              "value": "",
+              "placeholder": "",
+              "multilanguage": true
+            },
+            {
+              "id": "link",
+              "icon": "sicon-link",
+              "type": "string",
+              "format": "url",
+              "label": "رابط (اختياري)",
+              "required": false,
+              "value": "",
+              "placeholder": "https://"
+            }
+          ],
+          "value": [
+            {
+              "image": "",
+              "name": "شريكنا",
+              "link": ""
+            }
+          ]
+        },
+        {
+          "id": "speed",
+          "icon": "sicon-hashtag",
+          "type": "number",
+          "format": "slider",
+          "label": "السرعة",
+          "required": false,
+          "value": 30,
+          "minimum": 1,
+          "maximum": 50
+        },
+        {
+          "id": "color_always",
+          "icon": "sicon-toggle-off",
+          "type": "boolean",
+          "format": "switch",
+          "label": "إظهار الألوان دائماً (بدل الرمادي)",
+          "required": false,
+          "value": false
+        }
+      ],
+      "key": "e1bbeaa1-0dcf-5167-b978-480cf2eae2d0",
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/yaqeen-bundle/main/previews/yaqeen-logos.jpg"
+    },
+    {
+      "title": "يقين · ملخص التقييمات",
+      "icon": "sicon-star",
+      "name": "yaqeen-rating",
+      "fields": [
+        {
+          "id": "title",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "العنوان",
+          "format": "text",
+          "required": false,
+          "maxLength": 120,
+          "value": "عملاؤنا قالوا كلمتهم",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "s5",
+          "icon": "sicon-hashtag",
+          "type": "number",
+          "format": "number",
+          "label": "عدد تقييمات 5 نجوم",
+          "required": false,
+          "value": 0
+        },
+        {
+          "id": "s4",
+          "icon": "sicon-hashtag",
+          "type": "number",
+          "format": "number",
+          "label": "عدد تقييمات 4 نجوم",
+          "required": false,
+          "value": 0
+        },
+        {
+          "id": "s3",
+          "icon": "sicon-hashtag",
+          "type": "number",
+          "format": "number",
+          "label": "عدد تقييمات 3 نجوم",
+          "required": false,
+          "value": 0
+        },
+        {
+          "id": "s2",
+          "icon": "sicon-hashtag",
+          "type": "number",
+          "format": "number",
+          "label": "عدد تقييمات نجمتين",
+          "required": false,
+          "value": 0
+        },
+        {
+          "id": "s1",
+          "icon": "sicon-hashtag",
+          "type": "number",
+          "format": "number",
+          "label": "عدد تقييمات نجمة",
+          "required": false,
+          "value": 0
+        },
+        {
+          "id": "source",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "المصدر (مثلاً: تقييمات سلة)",
+          "format": "text",
+          "required": false,
+          "maxLength": 40,
+          "value": "تقييمات سلة",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "link",
+          "icon": "sicon-link",
+          "type": "string",
+          "format": "url",
+          "label": "رابط صفحة التقييمات",
+          "required": false,
+          "value": "",
+          "placeholder": "https://"
+        },
+        {
+          "id": "color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون مميز (اختياري — الافتراضي لون متجرك)",
+          "required": false,
+          "value": ""
+        }
+      ],
+      "key": "b34562d9-6a7e-5884-b995-b6e4ec1434f7",
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/yaqeen-bundle/main/previews/yaqeen-rating.jpg"
+    }
+  ]
+}
