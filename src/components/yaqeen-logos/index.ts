@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { base } from '../../shared/styles';
-import { txt } from '../../shared/salla';
+import { localizedString } from '../../shared/salla';
 
 /** "As seen in / our brands" logo marquee: monochrome at rest, full colour on hover. */
 export default class YaqeenLogos extends LitElement {
@@ -17,11 +17,11 @@ export default class YaqeenLogos extends LitElement {
     .nm { font-weight: 800; font-size: 22px; opacity: .5; white-space: nowrap; line-height: 54px; }
   `];
   render() {
-    const c = this.config ?? {}; const logos = (c.logos ?? []).filter((l) => l.image || txt(l.name));
+    const c = this.config ?? {}; const logos = (c.logos ?? []).filter((l) => l.image || localizedString(l.name));
     if (!logos.length) return html``;
-    const row = (dup: boolean) => logos.map((l) => { const inner = l.image ? html`<img src=${l.image} alt=${txt(l.name)} loading="lazy" />` : html`<span class="nm">${txt(l.name)}</span>`;
+    const row = (dup: boolean) => logos.map((l) => { const inner = l.image ? html`<img src=${l.image} alt=${localizedString(l.name)} loading="lazy" />` : html`<span class="nm">${localizedString(l.name)}</span>`;
       return l.link ? html`<a href=${l.link} aria-hidden=${dup}>${inner}</a>` : html`<span class="l" aria-hidden=${dup}>${inner}</span>`; });
-    return html`<div class="wrap" style="padding-block:36px">${txt(c.title) ? html`<h3>${txt(c.title)}</h3>` : ''}
+    return html`<div class="wrap" style="padding-block:36px">${localizedString(c.title) ? html`<h3>${localizedString(c.title)}</h3>` : ''}
       <div class="vp ${c.color_always ? 'color' : ''}" style="--d:${Math.max(10, 60 - (c.speed ?? 30))}s"><div class="track">${row(false)}${row(true)}${row(true)}</div></div></div>`;
   }
 }

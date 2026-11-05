@@ -1,6 +1,6 @@
-import { css as d, LitElement as f, html as r } from "lit";
+import { css as f, LitElement as g, html as o } from "lit";
 import { property as m } from "lit/decorators.js";
-const g = d`
+const h = f`
   :host { display: block; --tf-accent: var(--tf-custom, var(--color-primary, #c9a45c)); --tf-ink: #0f0c18; --tf-ivory: #f6f1e7; --tf-mut: #a59bc2;
     --tf-gold: linear-gradient(135deg, #f5d68a, #c9a45c 55%, #9a7634); font-family: inherit; direction: inherit; }
   :host([hidden]) { display: none; }
@@ -17,25 +17,50 @@ const g = d`
   .skel { background: linear-gradient(90deg, #8881 0, #8882 50%, #8881 100%); background-size: 200% 100%; animation: sk 1.4s infinite; border-radius: 14px; }
   @keyframes sk { to { background-position: -200% 0; } }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
-`, s = (a) => String(a && typeof a == "object" ? a[(document.documentElement.lang || "ar").slice(0, 2)] ?? a.ar ?? "" : a ?? "");
-var x = Object.defineProperty, h = (a, n, i, c) => {
-  for (var t = void 0, e = a.length - 1, o; e >= 0; e--)
-    (o = a[e]) && (t = o(n, i, t) || t);
-  return t && x(n, i, t), t;
+`, d = () => window.Salla, x = () => {
+  var e, t, i, a, n;
+  try {
+    const r = ((t = (e = d()) == null ? void 0 : e.lang) == null ? void 0 : t.locale) ?? ((n = (a = (i = d()) == null ? void 0 : i.config) == null ? void 0 : a.get) == null ? void 0 : n.call(a, "user.language_code"));
+    if (typeof r == "string" && r) return r.slice(0, 2);
+  } catch {
+  }
+  return (document.documentElement.lang || "ar").slice(0, 2);
+}, s = (e) => {
+  if (e == null) return "";
+  if (typeof e == "string") {
+    const t = e.trim();
+    if (t.startsWith("{") && t.endsWith("}"))
+      try {
+        return s(JSON.parse(t));
+      } catch {
+      }
+    return e;
+  }
+  if (typeof e == "number" || typeof e == "boolean") return String(e);
+  if (typeof e == "object") {
+    const t = e, i = t[x()] ?? t.ar ?? t.en ?? Object.values(t).find((a) => typeof a == "string" && a);
+    return typeof i == "string" ? i : "";
+  }
+  return "";
 };
-const l = class l extends f {
+var u = Object.defineProperty, y = (e, t, i, a) => {
+  for (var n = void 0, r = e.length - 1, c; r >= 0; r--)
+    (c = e[r]) && (n = c(t, i, n) || n);
+  return n && u(t, i, n), n;
+};
+const p = class p extends g {
   render() {
-    const n = this.config ?? {}, i = (n.logos ?? []).filter((t) => t.image || s(t.name));
-    if (!i.length) return r``;
-    const c = (t) => i.map((e) => {
-      const o = e.image ? r`<img src=${e.image} alt=${s(e.name)} loading="lazy" />` : r`<span class="nm">${s(e.name)}</span>`;
-      return e.link ? r`<a href=${e.link} aria-hidden=${t}>${o}</a>` : r`<span class="l" aria-hidden=${t}>${o}</span>`;
+    const t = this.config ?? {}, i = (t.logos ?? []).filter((n) => n.image || s(n.name));
+    if (!i.length) return o``;
+    const a = (n) => i.map((r) => {
+      const c = r.image ? o`<img src=${r.image} alt=${s(r.name)} loading="lazy" />` : o`<span class="nm">${s(r.name)}</span>`;
+      return r.link ? o`<a href=${r.link} aria-hidden=${n}>${c}</a>` : o`<span class="l" aria-hidden=${n}>${c}</span>`;
     });
-    return r`<div class="wrap" style="padding-block:36px">${s(n.title) ? r`<h3>${s(n.title)}</h3>` : ""}
-      <div class="vp ${n.color_always ? "color" : ""}" style="--d:${Math.max(10, 60 - (n.speed ?? 30))}s"><div class="track">${c(!1)}${c(!0)}${c(!0)}</div></div></div>`;
+    return o`<div class="wrap" style="padding-block:36px">${s(t.title) ? o`<h3>${s(t.title)}</h3>` : ""}
+      <div class="vp ${t.color_always ? "color" : ""}" style="--d:${Math.max(10, 60 - (t.speed ?? 30))}s"><div class="track">${a(!1)}${a(!0)}${a(!0)}</div></div></div>`;
   }
 };
-l.styles = [g, d`
+p.styles = [h, f`
     h3 { text-align: center; margin: 0 0 26px; font-size: 14px; letter-spacing: .25em; opacity: .55; font-weight: 700; }
     .vp { overflow: hidden; mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
     .track { display: flex; gap: clamp(36px, 6vw, 80px); width: max-content; align-items: center; animation: run var(--d, 30s) linear infinite; }
@@ -45,11 +70,11 @@ l.styles = [g, d`
     .color img, a:hover img, span.l:hover img { filter: none; transform: scale(1.06); }
     .nm { font-weight: 800; font-size: 22px; opacity: .5; white-space: nowrap; line-height: 54px; }
   `];
-let p = l;
-h([
+let l = p;
+y([
   m({ type: Object })
-], p.prototype, "config");
-typeof p < "u" && p.registerSallaComponent("salla-yaqeen-logos");
+], l.prototype, "config");
+typeof l < "u" && l.registerSallaComponent("salla-yaqeen-logos");
 export {
-  p as default
+  l as default
 };

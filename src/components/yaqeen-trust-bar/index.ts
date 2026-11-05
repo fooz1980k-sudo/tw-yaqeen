@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { base } from '../../shared/styles';
-import { style, txt } from '../../shared/salla';
+import { style, localizedString } from '../../shared/salla';
 
 type Item = { emoji?: string; title?: unknown; text?: unknown };
 /** Reassurance strip: shipping, returns, payment… Grid on desktop, a gentle auto-scroll on phones. */
@@ -24,10 +24,10 @@ export default class YaqeenTrustBar extends LitElement {
     @keyframes run { to { transform: translateX(50%); } }
   `];
   private row(items: Item[], dup = false) {
-    return items.map((i) => html`<div class="it ${dup ? 'dup' : ''}" aria-hidden=${dup ? 'true' : 'false'}><span class="em">${i.emoji || '✓'}</span><span><b>${txt(i.title)}</b>${txt(i.text) ? html`<small>${txt(i.text)}</small>` : ''}</span></div>`);
+    return items.map((i) => html`<div class="it ${dup ? 'dup' : ''}" aria-hidden=${dup ? 'true' : 'false'}><span class="em">${i.emoji || '✓'}</span><span><b>${localizedString(i.title)}</b>${localizedString(i.text) ? html`<small>${localizedString(i.text)}</small>` : ''}</span></div>`);
   }
   render() {
-    const c = this.config ?? {}; const items = (c.items ?? []).filter((i) => txt(i.title));
+    const c = this.config ?? {}; const items = (c.items ?? []).filter((i) => localizedString(i.title));
     if (!items.length) return html``;
     return html`<div class="wrap" style="padding-block:18px"><div class="bar ${c.dark ? 'dark' : ''}" style=${style(c.color)}><div class="track">${this.row(items)}${this.row(items, true)}</div></div></div>`;
   }
