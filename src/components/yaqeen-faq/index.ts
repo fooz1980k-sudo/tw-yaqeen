@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { base } from '../../shared/styles';
-import { style, txt } from '../../shared/salla';
+import { style, localizedString } from '../../shared/salla';
 
 type QA = { q?: unknown; a?: unknown };
 /** Searchable FAQ accordion that also publishes FAQPage structured data for Google. */
@@ -26,7 +26,7 @@ export default class YaqeenFaq extends LitElement {
     .none { opacity: .6; padding: 20px 0; } mark { background: color-mix(in srgb, var(--tf-accent) 30%, transparent); color: inherit; border-radius: 4px; }
     .ct { margin-top: 18px; }
   `];
-  private items() { return (this.config?.items ?? []).map((i) => ({ q: txt(i.q), a: txt(i.a) })).filter((i) => i.q); }
+  private items() { return (this.config?.items ?? []).map((i) => ({ q: localizedString(i.q), a: localizedString(i.a) })).filter((i) => i.q); }
   updated(ch: Map<string, unknown>) {
     if (!ch.has('config')) return;
     this.ld?.remove();
@@ -44,7 +44,7 @@ export default class YaqeenFaq extends LitElement {
     const c = this.config ?? {}; const q = this.q.trim().toLowerCase();
     const list = this.items().filter((i) => !q || (i.q + ' ' + i.a).toLowerCase().includes(q));
     return html`<div class="wrap" style=${style(c.color)}><div class="grid">
-      <div class="side"><span class="eyebrow">💬 أسئلة شائعة</span><h2 class="title">${txt(c.title) || 'عندك سؤال؟'}</h2>${txt(c.subtitle) ? html`<p class="sub">${txt(c.subtitle)}</p>` : ''}
+      <div class="side"><span class="eyebrow">💬 أسئلة شائعة</span><h2 class="title">${localizedString(c.title) || 'عندك سؤال؟'}</h2>${localizedString(c.subtitle) ? html`<p class="sub">${localizedString(c.subtitle)}</p>` : ''}
         ${c.search !== false ? html`<input type="search" placeholder="ابحث في الأسئلة… (مثلاً: الشحن)" .value=${this.q} @input=${(e: Event) => { this.q = (e.target as HTMLInputElement).value; this.open = 0; }} aria-label="ابحث في الأسئلة" />` : ''}
         ${c.contact ? html`<p class="ct">ما لقيت جوابك؟ <a href=${c.contact} style="color:var(--tf-accent);font-weight:700">كلّمنا ←</a></p>` : ''}</div>
       <div>${list.length ? list.map((i, n) => html`<div class="qa ${this.open === n ? 'on' : ''}">

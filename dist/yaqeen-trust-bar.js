@@ -1,6 +1,6 @@
-import { css as c, LitElement as f, html as o } from "lit";
-import { property as x } from "lit/decorators.js";
-const m = c`
+import { css as f, LitElement as x, html as d } from "lit";
+import { property as g } from "lit/decorators.js";
+const m = f`
   :host { display: block; --tf-accent: var(--tf-custom, var(--color-primary, #c9a45c)); --tf-ink: #0f0c18; --tf-ivory: #f6f1e7; --tf-mut: #a59bc2;
     --tf-gold: linear-gradient(135deg, #f5d68a, #c9a45c 55%, #9a7634); font-family: inherit; direction: inherit; }
   :host([hidden]) { display: none; }
@@ -17,22 +17,47 @@ const m = c`
   .skel { background: linear-gradient(90deg, #8881 0, #8882 50%, #8881 100%); background-size: 200% 100%; animation: sk 1.4s infinite; border-radius: 14px; }
   @keyframes sk { to { background-position: -200% 0; } }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
-`, s = (t) => String(t && typeof t == "object" ? t[(document.documentElement.lang || "ar").slice(0, 2)] ?? t.ar ?? "" : t ?? ""), b = (t) => t ? `--tf-custom:${t}` : "";
-var g = Object.defineProperty, u = (t, a, r, e) => {
-  for (var i = void 0, d = t.length - 1, l; d >= 0; d--)
-    (l = t[d]) && (i = l(a, r, i) || i);
-  return i && g(a, r, i), i;
+`, l = () => window.Salla, b = () => {
+  var r, t, e, a, n;
+  try {
+    const i = ((t = (r = l()) == null ? void 0 : r.lang) == null ? void 0 : t.locale) ?? ((n = (a = (e = l()) == null ? void 0 : e.config) == null ? void 0 : a.get) == null ? void 0 : n.call(a, "user.language_code"));
+    if (typeof i == "string" && i) return i.slice(0, 2);
+  } catch {
+  }
+  return (document.documentElement.lang || "ar").slice(0, 2);
+}, o = (r) => {
+  if (r == null) return "";
+  if (typeof r == "string") {
+    const t = r.trim();
+    if (t.startsWith("{") && t.endsWith("}"))
+      try {
+        return o(JSON.parse(t));
+      } catch {
+      }
+    return r;
+  }
+  if (typeof r == "number" || typeof r == "boolean") return String(r);
+  if (typeof r == "object") {
+    const t = r, e = t[b()] ?? t.ar ?? t.en ?? Object.values(t).find((a) => typeof a == "string" && a);
+    return typeof e == "string" ? e : "";
+  }
+  return "";
+}, u = (r) => r ? `--tf-custom:${r}` : "";
+var h = Object.defineProperty, y = (r, t, e, a) => {
+  for (var n = void 0, i = r.length - 1, c; i >= 0; i--)
+    (c = r[i]) && (n = c(t, e, n) || n);
+  return n && h(t, e, n), n;
 };
-const p = class p extends f {
-  row(a, r = !1) {
-    return a.map((e) => o`<div class="it ${r ? "dup" : ""}" aria-hidden=${r ? "true" : "false"}><span class="em">${e.emoji || "✓"}</span><span><b>${s(e.title)}</b>${s(e.text) ? o`<small>${s(e.text)}</small>` : ""}</span></div>`);
+const p = class p extends x {
+  row(t, e = !1) {
+    return t.map((a) => d`<div class="it ${e ? "dup" : ""}" aria-hidden=${e ? "true" : "false"}><span class="em">${a.emoji || "✓"}</span><span><b>${o(a.title)}</b>${o(a.text) ? d`<small>${o(a.text)}</small>` : ""}</span></div>`);
   }
   render() {
-    const a = this.config ?? {}, r = (a.items ?? []).filter((e) => s(e.title));
-    return r.length ? o`<div class="wrap" style="padding-block:18px"><div class="bar ${a.dark ? "dark" : ""}" style=${b(a.color)}><div class="track">${this.row(r)}${this.row(r, !0)}</div></div></div>` : o``;
+    const t = this.config ?? {}, e = (t.items ?? []).filter((a) => o(a.title));
+    return e.length ? d`<div class="wrap" style="padding-block:18px"><div class="bar ${t.dark ? "dark" : ""}" style=${u(t.color)}><div class="track">${this.row(e)}${this.row(e, !0)}</div></div></div>` : d``;
   }
 };
-p.styles = [m, c`
+p.styles = [m, f`
     .bar { border-radius: 22px; padding: 6px; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 6px; background: #fff; border: 1px solid #0000000f; box-shadow: 0 18px 40px -30px #0005; }
     .dark.bar { background: #0f0c18; border-color: #ffffff14; }
     .it { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-radius: 18px; transition: background .3s; }
@@ -48,11 +73,11 @@ p.styles = [m, c`
     @media (min-width: 861px) { .track { display: contents; } .dup { display: none; } }
     @keyframes run { to { transform: translateX(50%); } }
   `];
-let n = p;
-u([
-  x({ type: Object })
-], n.prototype, "config");
-typeof n < "u" && n.registerSallaComponent("salla-yaqeen-trust-bar");
+let s = p;
+y([
+  g({ type: Object })
+], s.prototype, "config");
+typeof s < "u" && s.registerSallaComponent("salla-yaqeen-trust-bar");
 export {
-  n as default
+  s as default
 };

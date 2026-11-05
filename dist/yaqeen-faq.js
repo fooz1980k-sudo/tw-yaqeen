@@ -1,6 +1,6 @@
-import { css as f, LitElement as g, html as o } from "lit";
+import { css as g, LitElement as u, html as a } from "lit";
 import { property as h, state as m } from "lit/decorators.js";
-const x = f`
+const x = g`
   :host { display: block; --tf-accent: var(--tf-custom, var(--color-primary, #c9a45c)); --tf-ink: #0f0c18; --tf-ivory: #f6f1e7; --tf-mut: #a59bc2;
     --tf-gold: linear-gradient(135deg, #f5d68a, #c9a45c 55%, #9a7634); font-family: inherit; direction: inherit; }
   :host([hidden]) { display: none; }
@@ -17,13 +17,38 @@ const x = f`
   .skel { background: linear-gradient(90deg, #8881 0, #8882 50%, #8881 100%); background-size: 200% 100%; animation: sk 1.4s infinite; border-radius: 14px; }
   @keyframes sk { to { background-position: -200% 0; } }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
-`, p = (n) => String(n && typeof n == "object" ? n[(document.documentElement.lang || "ar").slice(0, 2)] ?? n.ar ?? "" : n ?? ""), u = (n) => n ? `--tf-custom:${n}` : "";
-var b = Object.defineProperty, c = (n, t, e, i) => {
-  for (var r = void 0, a = n.length - 1, l; a >= 0; a--)
-    (l = n[a]) && (r = l(t, e, r) || r);
-  return r && b(t, e, r), r;
+`, f = () => window.Salla, b = () => {
+  var n, t, e, r, i;
+  try {
+    const o = ((t = (n = f()) == null ? void 0 : n.lang) == null ? void 0 : t.locale) ?? ((i = (r = (e = f()) == null ? void 0 : e.config) == null ? void 0 : r.get) == null ? void 0 : i.call(r, "user.language_code"));
+    if (typeof o == "string" && o) return o.slice(0, 2);
+  } catch {
+  }
+  return (document.documentElement.lang || "ar").slice(0, 2);
+}, p = (n) => {
+  if (n == null) return "";
+  if (typeof n == "string") {
+    const t = n.trim();
+    if (t.startsWith("{") && t.endsWith("}"))
+      try {
+        return p(JSON.parse(t));
+      } catch {
+      }
+    return n;
+  }
+  if (typeof n == "number" || typeof n == "boolean") return String(n);
+  if (typeof n == "object") {
+    const t = n, e = t[b()] ?? t.ar ?? t.en ?? Object.values(t).find((r) => typeof r == "string" && r);
+    return typeof e == "string" ? e : "";
+  }
+  return "";
+}, y = (n) => n ? `--tf-custom:${n}` : "";
+var v = Object.defineProperty, c = (n, t, e, r) => {
+  for (var i = void 0, o = n.length - 1, l; o >= 0; o--)
+    (l = n[o]) && (i = l(t, e, i) || i);
+  return i && v(t, e, i), i;
 };
-const d = class d extends g {
+const d = class d extends u {
   constructor() {
     super(...arguments), this.open = 0, this.q = "";
   }
@@ -32,13 +57,13 @@ const d = class d extends g {
     return (((t = this.config) == null ? void 0 : t.items) ?? []).map((e) => ({ q: p(e.q), a: p(e.a) })).filter((e) => e.q);
   }
   updated(t) {
-    var i;
+    var r;
     if (!t.has("config")) return;
-    (i = this.ld) == null || i.remove();
+    (r = this.ld) == null || r.remove();
     const e = this.items();
     e.length && (this.ld = Object.assign(document.createElement("script"), {
       type: "application/ld+json",
-      textContent: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: e.map((r) => ({ "@type": "Question", name: r.q, acceptedAnswer: { "@type": "Answer", text: r.a } })) })
+      textContent: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: e.map((i) => ({ "@type": "Question", name: i.q, acceptedAnswer: { "@type": "Answer", text: i.a } })) })
     }), document.head.appendChild(this.ld));
   }
   disconnectedCallback() {
@@ -48,24 +73,24 @@ const d = class d extends g {
   hi(t) {
     const e = this.q.trim();
     if (!e) return t;
-    const i = t.toLowerCase().indexOf(e.toLowerCase());
-    return i < 0 ? t : o`${t.slice(0, i)}<mark>${t.slice(i, i + e.length)}</mark>${t.slice(i + e.length)}`;
+    const r = t.toLowerCase().indexOf(e.toLowerCase());
+    return r < 0 ? t : a`${t.slice(0, r)}<mark>${t.slice(r, r + e.length)}</mark>${t.slice(r + e.length)}`;
   }
   render() {
-    const t = this.config ?? {}, e = this.q.trim().toLowerCase(), i = this.items().filter((r) => !e || (r.q + " " + r.a).toLowerCase().includes(e));
-    return o`<div class="wrap" style=${u(t.color)}><div class="grid">
-      <div class="side"><span class="eyebrow">💬 أسئلة شائعة</span><h2 class="title">${p(t.title) || "عندك سؤال؟"}</h2>${p(t.subtitle) ? o`<p class="sub">${p(t.subtitle)}</p>` : ""}
-        ${t.search !== !1 ? o`<input type="search" placeholder="ابحث في الأسئلة… (مثلاً: الشحن)" .value=${this.q} @input=${(r) => {
-      this.q = r.target.value, this.open = 0;
+    const t = this.config ?? {}, e = this.q.trim().toLowerCase(), r = this.items().filter((i) => !e || (i.q + " " + i.a).toLowerCase().includes(e));
+    return a`<div class="wrap" style=${y(t.color)}><div class="grid">
+      <div class="side"><span class="eyebrow">💬 أسئلة شائعة</span><h2 class="title">${p(t.title) || "عندك سؤال؟"}</h2>${p(t.subtitle) ? a`<p class="sub">${p(t.subtitle)}</p>` : ""}
+        ${t.search !== !1 ? a`<input type="search" placeholder="ابحث في الأسئلة… (مثلاً: الشحن)" .value=${this.q} @input=${(i) => {
+      this.q = i.target.value, this.open = 0;
     }} aria-label="ابحث في الأسئلة" />` : ""}
-        ${t.contact ? o`<p class="ct">ما لقيت جوابك؟ <a href=${t.contact} style="color:var(--tf-accent);font-weight:700">كلّمنا ←</a></p>` : ""}</div>
-      <div>${i.length ? i.map((r, a) => o`<div class="qa ${this.open === a ? "on" : ""}">
-          <button class="q" aria-expanded=${this.open === a} @click=${() => this.open = this.open === a ? -1 : a}><span>${this.hi(r.q)}</span><span class="pm">+</span></button>
-          <div class="a" role="region"><div><p>${this.hi(r.a)}</p></div></div></div>`) : o`<p class="none">ما فيه سؤال يطابق «${this.q}».</p>`}</div>
+        ${t.contact ? a`<p class="ct">ما لقيت جوابك؟ <a href=${t.contact} style="color:var(--tf-accent);font-weight:700">كلّمنا ←</a></p>` : ""}</div>
+      <div>${r.length ? r.map((i, o) => a`<div class="qa ${this.open === o ? "on" : ""}">
+          <button class="q" aria-expanded=${this.open === o} @click=${() => this.open = this.open === o ? -1 : o}><span>${this.hi(i.q)}</span><span class="pm">+</span></button>
+          <div class="a" role="region"><div><p>${this.hi(i.a)}</p></div></div></div>`) : a`<p class="none">ما فيه سؤال يطابق «${this.q}».</p>`}</div>
     </div></div>`;
   }
 };
-d.styles = [x, f`
+d.styles = [x, g`
     .grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(24px, 5vw, 64px); align-items: start; }
     @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
     .side { position: sticky; top: 90px; }

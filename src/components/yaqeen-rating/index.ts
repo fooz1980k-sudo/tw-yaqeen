@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { base } from '../../shared/styles';
-import { onView, style, txt } from '../../shared/salla';
+import { onView, style, localizedString } from '../../shared/salla';
 
 /** Rating summary: computes the average and share of each star level from the merchant's real counts, with animated bars. */
 export default class YaqeenRating extends LitElement {
@@ -23,9 +23,9 @@ export default class YaqeenRating extends LitElement {
     if (!total) return html``;
     const avg = n.reduce((a, v, i) => a + v * (5 - i), 0) / total; const rec = Math.round(((n[0] + n[1]) / total) * 100);
     const full = Math.round(avg);
-    return html`<div class="wrap" style=${style(c.color)}><span class="eyebrow">⭐ تقييمات حقيقية</span><h2 class="title">${txt(c.title) || 'عملاؤنا قالوا كلمتهم'}</h2>
+    return html`<div class="wrap" style=${style(c.color)}><span class="eyebrow">⭐ تقييمات حقيقية</span><h2 class="title">${localizedString(c.title) || 'عملاؤنا قالوا كلمتهم'}</h2>
       <div class="box"><div class="avg"><b>${avg.toFixed(1)}</b><div class="st" aria-label="${avg.toFixed(1)} من 5">${'★'.repeat(full)}${'☆'.repeat(5 - full)}</div>
-        <small>من ${total.toLocaleString('en')} تقييم ${txt(c.source) ? `· ${txt(c.source)}` : ''}</small></div>
+        <small>من ${total.toLocaleString('en')} تقييم ${localizedString(c.source) ? `· ${localizedString(c.source)}` : ''}</small></div>
         <div>${n.map((v, i) => html`<div class="row"><span>${5 - i} ★</span><div class="tr"><div class="fl" style="width:${this.shown ? (v / total) * 100 : 0}%"></div></div><span class="pc">${Math.round((v / total) * 100)}٪</span></div>`)}
           <div class="rec">👍 ${rec}٪ من العملاء يقيّمونا 4 نجوم أو أكثر${c.link ? html` · <a href=${c.link} style="color:inherit">اقرأ التقييمات</a>` : ''}</div></div></div></div>`;
   }
